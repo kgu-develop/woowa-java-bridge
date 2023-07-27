@@ -9,11 +9,15 @@ public class InputView {
     private static void printInputLengthMessage() {
         System.out.println("다리의 길이를 입력해주세요.");
     }
+    
+    private static void printInputDirectMessage() {
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+    }
 
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public static int readBridgeSize() {
         printInputLengthMessage();
         
         String length = Console.readLine();
@@ -24,7 +28,26 @@ public class InputView {
         return Integer.parseInt(length);
     }
     
-    private void validateHasWhiteSpace(String input) {
+    /**
+     * 사용자가 이동할 칸을 입력받는다.
+     */
+    public String readMoving() {
+        printInputDirectMessage();
+    
+        String direct = Console.readLine();
+        validateHasWhiteSpace(direct);
+        
+        return direct;
+    }
+    
+    /**
+     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
+     */
+    public String readGameCommand() {
+        return null;
+    }
+    
+    private static void validateHasWhiteSpace(String input) {
         if (hasWhiteSpace(input)) {
             throw new IllegalArgumentException("공백을 입력할 수 없습니다.");
         }
@@ -34,25 +57,11 @@ public class InputView {
         return input.chars().anyMatch(Character::isWhitespace);
     }
     
-    private void validateIsNumeric(String input) {
+    private static void validateIsNumeric(String input) {
         try {
             Integer.valueOf(input);
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("정수만 입력 가능합니다.");
         }
-    }
-
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
-    public String readMoving() {
-        return null;
-    }
-
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
-    public String readGameCommand() {
-        return null;
     }
 }
