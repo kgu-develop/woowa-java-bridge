@@ -25,9 +25,13 @@ public class InputView {
     }
     
     private void validateHasWhiteSpace(String input) {
-        if (input.chars().anyMatch(Character::isWhitespace)) {
+        if (hasWhiteSpace(input)) {
             throw new IllegalArgumentException("공백을 입력할 수 없습니다.");
         }
+    }
+    
+    private static boolean hasWhiteSpace(String input) {
+        return input.chars().anyMatch(Character::isWhitespace);
     }
     
     private void validateIsNumeric(String input) {
