@@ -3,6 +3,10 @@ package bridge.model.game;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
+import static bridge.common.BridgeFixture.INIT_BRIDGE_MAP;
+import static bridge.common.BridgeFixture.createBridgeMap;
 import static bridge.model.bridge.BridgeDirection.DOWN;
 import static bridge.model.bridge.BridgeDirection.UP;
 import static bridge.model.game.GameResultStatus.CLEAR;
@@ -13,13 +17,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class GameTrackerTest {
-    private static final String INIT_MAP =
-            new StringBuilder()
-                    .append(String.format("[ %s ]", ""))
-                    .append("\n")
-                    .append(String.format("[ %s ]", ""))
-                    .toString();
-
     @Test
     @DisplayName("GameTracker를 생성한다")
     void construct() {
@@ -28,7 +25,7 @@ public class GameTrackerTest {
 
         // then
         assertAll(
-                () -> assertThat(gameTracker.getBridgeMap().toString()).isEqualTo(INIT_MAP),
+                () -> assertThat(gameTracker.getBridgeMap().toString()).isEqualTo(INIT_BRIDGE_MAP),
                 () -> assertThat(gameTracker.getGameStatus()).isEqualTo(IN_PROGRESS),
                 () -> assertThat(gameTracker.getAttemptCount()).isEqualTo(1)
         );
@@ -38,21 +35,25 @@ public class GameTrackerTest {
     @DisplayName("다리 건너기를 진행한다 (updateMap)")
     void updateMap() {
         final GameTracker gameTracker = new GameTracker();
-        assertThat(gameTracker.getBridgeMap().toString()).isEqualTo(INIT_MAP);
+        assertThat(gameTracker.getBridgeMap().toString()).isEqualTo(INIT_BRIDGE_MAP);
 
         gameTracker.updateMap(UP, ROUND_SUCCESS);
-        StringBuilder result = new StringBuilder()
-                .append(String.format("[ %s ]", ROUND_SUCCESS.getValue()))
-                .append("\n")
-                .append(String.format("[ %s ]", ROUND_NONE.getValue()));
-        assertThat(gameTracker.getBridgeMap().toString()).isEqualTo(result.toString());
+        assertThat(gameTracker.getBridgeMap().toString())
+                .isEqualTo(
+                        createBridgeMap(
+                                "[ %s ]", List.of(ROUND_SUCCESS),
+                                "[ %s ]", List.of(ROUND_NONE)
+                        )
+                );
 
         gameTracker.updateMap(DOWN, ROUND_FAIL);
-        result = new StringBuilder()
-                .append(String.format("[ %s | %s ]", ROUND_SUCCESS.getValue(), ROUND_NONE.getValue()))
-                .append("\n")
-                .append(String.format("[ %s | %s ]", ROUND_NONE.getValue(), ROUND_FAIL.getValue()));
-        assertThat(gameTracker.getBridgeMap().toString()).isEqualTo(result.toString());
+        assertThat(gameTracker.getBridgeMap().toString())
+                .isEqualTo(
+                        createBridgeMap(
+                                "[ %s | %s ]", List.of(ROUND_SUCCESS, ROUND_NONE),
+                                "[ %s | %s ]", List.of(ROUND_NONE, ROUND_FAIL)
+                        )
+                );
     }
 
     @Test
@@ -60,30 +61,34 @@ public class GameTrackerTest {
     void retryGame() {
         final GameTracker gameTracker = new GameTracker();
         assertAll(
-                () -> assertThat(gameTracker.getBridgeMap().toString()).isEqualTo(INIT_MAP),
+                () -> assertThat(gameTracker.getBridgeMap().toString()).isEqualTo(INIT_BRIDGE_MAP),
                 () -> assertThat(gameTracker.getGameStatus()).isEqualTo(IN_PROGRESS),
                 () -> assertThat(gameTracker.getAttemptCount()).isEqualTo(1)
         );
 
         /* 다리 건너기 2회 진행 */
         gameTracker.updateMap(UP, ROUND_SUCCESS);
-        StringBuilder result = new StringBuilder()
-                .append(String.format("[ %s ]", ROUND_SUCCESS.getValue()))
-                .append("\n")
-                .append(String.format("[ %s ]", ROUND_NONE.getValue()));
-        assertThat(gameTracker.getBridgeMap().toString()).isEqualTo(result.toString());
+        assertThat(gameTracker.getBridgeMap().toString())
+                .isEqualTo(
+                        createBridgeMap(
+                                "[ %s ]", List.of(ROUND_SUCCESS),
+                                "[ %s ]", List.of(ROUND_NONE)
+                        )
+                );
 
         gameTracker.updateMap(DOWN, ROUND_FAIL);
-        result = new StringBuilder()
-                .append(String.format("[ %s | %s ]", ROUND_SUCCESS.getValue(), ROUND_NONE.getValue()))
-                .append("\n")
-                .append(String.format("[ %s | %s ]", ROUND_NONE.getValue(), ROUND_FAIL.getValue()));
-        assertThat(gameTracker.getBridgeMap().toString()).isEqualTo(result.toString());
+        assertThat(gameTracker.getBridgeMap().toString())
+                .isEqualTo(
+                        createBridgeMap(
+                                "[ %s | %s ]", List.of(ROUND_SUCCESS, ROUND_NONE),
+                                "[ %s | %s ]", List.of(ROUND_NONE, ROUND_FAIL)
+                        )
+                );
 
         /* 게임 재시작 */
         gameTracker.retryGame();
         assertAll(
-                () -> assertThat(gameTracker.getBridgeMap().toString()).isEqualTo(INIT_MAP),
+                () -> assertThat(gameTracker.getBridgeMap().toString()).isEqualTo(INIT_BRIDGE_MAP),
                 () -> assertThat(gameTracker.getGameStatus()).isEqualTo(IN_PROGRESS),
                 () -> assertThat(gameTracker.getAttemptCount()).isEqualTo(2)
         );
@@ -94,7 +99,7 @@ public class GameTrackerTest {
     void terminateGame() {
         final GameTracker gameTracker = new GameTracker();
         assertAll(
-                () -> assertThat(gameTracker.getBridgeMap().toString()).isEqualTo(INIT_MAP),
+                () -> assertThat(gameTracker.getBridgeMap().toString()).isEqualTo(INIT_BRIDGE_MAP),
                 () -> assertThat(gameTracker.getGameStatus()).isEqualTo(IN_PROGRESS),
                 () -> assertThat(gameTracker.getAttemptCount()).isEqualTo(1)
         );
