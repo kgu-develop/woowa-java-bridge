@@ -12,4 +12,15 @@ public interface ExceptionConstants {
             this.message = message;
         }
     }
+
+    enum GameProcessDecisionCommandException {
+        INVALID_PROCESS_DECISION_COMMAND("게임 재시작, 게임 종료에 대해서 [R, Q] 커맨드만 입력할 수 있습니다."),
+        ;
+
+        public final String message;
+
+        GameProcessDecisionCommandException(final String message) {
+            this.message = message;
+        }
+    }
 }

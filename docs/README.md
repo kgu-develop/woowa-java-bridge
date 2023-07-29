@@ -48,29 +48,30 @@
 ### `game/GameStatus`
 
 - 게임 상태와 관련된 Enum 컴포넌트
-  - `START` -> 게임 시작
-  - `RETRY` -> 게임 재시작
-  - `QUIT` -> 게임 종료
+  - `IN_PROGRESS` -> 게임 진행
+  - `TERMINATE` -> 게임 종료
+  - `GAME_CLEAR` -> 게임 성공
+  - `GAME_FAIL` -> 게임 실패
 
 ### `game/GameRoundStatus`
 
 - 각 라운드별 다리 건넌 상태를 표현하기 위한 컴포넌트
-  - `SUCCESS` -> 건너기 성공
-  - `FAIL` -> 건너기 실패
+  - `ROUND_SUCCESS` -> 건너기 성공
+  - `ROUND_FAIL` -> 건너기 실패
   - `NONE` -> 건너지 않음
 
 ### `game/GameResultStatus`
 
-- 게임 종료 상태와 관련된 Enum 컴포넌트
-  - `SUCCESS` -> 게임 성공
-  - `FAILURE` -> 게임 실패
+- 게임 종료 후 출력 관련된 Enum 컴포넌트
+  - `CLEAR` -> 성공
+  - `FAIL` -> 실패
 
 ### `game/GameTracker`
 
 - 게임 진행과 관련된 컴포넌트를 묶은 컴포넌트
-  - 시도 횟수
   - 다리 전체 맵
   - 게임 현재 상태
+  - 총 시도 횟수
 
 ### `game/BridgeGame`
 
