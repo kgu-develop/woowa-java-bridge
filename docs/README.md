@@ -34,6 +34,7 @@
 
 - Input Size 길이만큼 랜덤 생성된 Bridge 컴포넌트
   - 사용자가 건너갈 Bridge의 정답 기준
+  - `BridgeMaker -> List<String>`을 기준으로 Bridge 생성
 
 ### `bridge/BridgeMap`
 
