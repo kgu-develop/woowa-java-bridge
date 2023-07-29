@@ -21,4 +21,8 @@ public enum GameProcessDecisionCommand {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(INVALID_PROCESS_DECISION_COMMAND.message));
     }
+
+    public String getValue() {
+        return value;
+    }
 }
