@@ -6,7 +6,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 class BridgeServiceTest {
@@ -21,10 +20,11 @@ class BridgeServiceTest {
         // given
         List<String> caseA = List.of("U", "U", "U");
         List<String> bridge = List.of("U", "U", "U");
+        BridgeService bridgeService = new BridgeService();
     
         // when
         List<Boolean> moveResult = MoveResult.getMoveResult();
-        moveProcess(moveResult, caseA, bridge);
+        moveProcess(bridgeService, moveResult, caseA, bridge);
     
         // then
         assertThat(moveResult.size()).isEqualTo(3);
@@ -36,10 +36,11 @@ class BridgeServiceTest {
         // given
         List<String> caseA = List.of("U", "U", "U");
         List<String> bridge = List.of("U", "D", "U");
+        BridgeService bridgeService = new BridgeService();
         
         // when
         List<Boolean> moveResult = MoveResult.getMoveResult();
-        moveProcess(moveResult, caseA, bridge);
+        moveProcess(bridgeService, moveResult, caseA, bridge);
         
         // then
         assertThat(moveResult.size()).isEqualTo(2);
@@ -51,20 +52,21 @@ class BridgeServiceTest {
         // given
         List<String> caseA = List.of("U", "U", "U");
         List<String> bridge = List.of("D", "U", "U");
+        BridgeService bridgeService = new BridgeService();
         
         // when
         List<Boolean> moveResult = MoveResult.getMoveResult();
-        moveProcess(moveResult, caseA, bridge);
+        moveProcess(bridgeService, moveResult, caseA, bridge);
         
         // then
         assertThat(moveResult.size()).isEqualTo(1);
     }
     
     // 어플리케이션 시나리오
-    private static void moveProcess(List<Boolean> moveResult, List<String> caseA, List<String> bridge) {
+    private static void moveProcess(BridgeService bridgeService, List<Boolean> moveResult, List<String> caseA, List<String> bridge) {
         for (int i = 0; i < bridge.size(); i++) {
-            boolean eachResult = BridgeService.checkMove(bridge.get(i), caseA.get(i));
-            BridgeService.move(moveResult, eachResult);
+            boolean eachResult = bridgeService.checkMove(bridge.get(i), caseA.get(i));
+            bridgeService.move(moveResult, eachResult, bridge);
     
             if (eachResult == false) {
                 break;

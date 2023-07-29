@@ -1,5 +1,6 @@
 package bridge.service;
 
+import bridge.model.RestartStatus;
 import bridge.model.bridge.BridgeMaker;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -20,5 +21,10 @@ public class BridgeService {
     
     public boolean checkMove(String bridgeSquare, String userSquare) {
         return userSquare.equals(bridgeSquare);
+    }
+    
+    public RestartStatus retry() {
+        String signal = InputView.readGameCommand();
+        return RestartStatus.getRestartStatusBy(signal);
     }
 }

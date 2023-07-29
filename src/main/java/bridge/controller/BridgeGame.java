@@ -7,6 +7,7 @@ import bridge.model.result.CompareResult;
 import bridge.model.result.MoveResult;
 import bridge.model.user.UserSquare;
 import bridge.service.BridgeService;
+import bridge.view.InputView;
 
 import java.util.List;
 
@@ -37,16 +38,17 @@ public class BridgeGame {
     }
     
     private void playGame(List<String> bridge) {
-        while (true) {
+        do {
             List<Boolean> moveResult = createResultHolder();
             for (String bridgeSquare : bridge) {
                 move(bridgeSquare, moveResult, bridge);
-    
+            
                 if (isDifferent()) {
                     break;
                 }
             }
-        }
+        
+        } while (!isQuit());
     }
     
     private static List<Boolean> createResultHolder() {
@@ -66,6 +68,7 @@ public class BridgeGame {
         
         compare = CompareResult.getCompareBy(eachResult);
         bridgeService.move(moveResult, eachResult, bridge);
+        retry(eachResult);
     }
 
     /**
@@ -73,10 +76,17 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public void retry(boolean eachResult) {
+        if (eachResult == false) {
+            restartStatus = bridgeService.retry();
+        }
     }
     
     private boolean isDifferent() {
         return compare == CompareResult.DIFF;
+    }
+    
+    private boolean isQuit() {
+        return restartStatus == RestartStatus.QUIT;
     }
 }
