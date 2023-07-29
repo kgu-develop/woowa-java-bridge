@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.model.BridgeDirection;
+import bridge.model.bridge.BridgeDirection;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,11 +1,11 @@
-package bridge.model;
+package bridge.model.bridge;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import static bridge.model.BridgeDirection.DOWN;
-import static bridge.model.BridgeDirection.UP;
+import static bridge.model.bridge.BridgeDirection.DOWN;
+import static bridge.model.bridge.BridgeDirection.UP;
 import static bridge.utils.ExceptionConstants.BridgeDirectionException.INVALID_DIRECTION_COMMAND;
 import static bridge.utils.ExceptionConstants.BridgeDirectionException.INVALID_DIRECTION_NUMBER;
 import static org.assertj.core.api.Assertions.assertThat;
