@@ -12,10 +12,8 @@ public class BridgeMapTest {
     @Test
     @DisplayName("BridgeMap을 생성하고 게임 진행에 따른 Map 현황을 확인한다")
     void construct() {
-        StringBuilder result;
-
         final BridgeMap bridgeMap = BridgeMap.init();
-        result = new StringBuilder()
+        StringBuilder result = new StringBuilder()
                 .append(String.format("[ %s ]", ""))
                 .append("\n")
                 .append(String.format("[ %s ]", ""));

@@ -10,10 +10,8 @@ public class BridgeLineTest {
     @Test
     @DisplayName("BridgeLine을 생성하고 GameRoundStatus 결과에 따라 각 칸을 추가하면서 채운다")
     void construct() {
-        String result;
-
         final BridgeLine bridgeLine = BridgeLine.create();
-        result = String.format("[ %s ]", "");
+        String result = String.format("[ %s ]", "");
         assertThat(bridgeLine.toString()).isEqualTo(result);
 
         // add success
