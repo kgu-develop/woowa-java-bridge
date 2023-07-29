@@ -21,7 +21,8 @@ public class BridgeLine {
         line.add(status.getValue());
     }
 
-    public String getLine() {
+    @Override
+    public String toString() {
         final StringJoiner joiner = new StringJoiner(" | ", "[ ", " ]");
         for (String value : line) {
             joiner.add(value);

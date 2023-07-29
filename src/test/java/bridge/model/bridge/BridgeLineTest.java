@@ -11,18 +11,18 @@ public class BridgeLineTest {
     @DisplayName("BridgeLine을 생성하고 GameRoundStatus 결과에 따라 각 칸을 추가하면서 채운다")
     void construct() {
         final BridgeLine bridgeLine = BridgeLine.create();
-        assertThat(bridgeLine.getLine()).isEqualTo("[  ]");
+        assertThat(bridgeLine.toString()).isEqualTo("[  ]");
 
         // add success
         bridgeLine.addLine(SUCCESS);
-        assertThat(bridgeLine.getLine()).isEqualTo("[ O ]");
+        assertThat(bridgeLine.toString()).isEqualTo("[ O ]");
 
         // add fail
         bridgeLine.addLine(FAIL);
-        assertThat(bridgeLine.getLine()).isEqualTo("[ O | X ]");
+        assertThat(bridgeLine.toString()).isEqualTo("[ O | X ]");
 
         // add none
         bridgeLine.addLine(NONE);
-        assertThat(bridgeLine.getLine()).isEqualTo("[ O | X |   ]");
+        assertThat(bridgeLine.toString()).isEqualTo("[ O | X |   ]");
     }
 }
