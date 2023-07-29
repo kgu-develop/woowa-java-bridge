@@ -25,8 +25,8 @@ public class BridgeLineTest {
         assertThat(bridgeLine.toString()).isEqualTo(result);
 
         // add none
-        bridgeLine.addLine(NONE);
-        result = String.format("[ %s | %s | %s ]", ROUND_SUCCESS.getValue(), ROUND_FAIL.getValue(), NONE.getValue());
+        bridgeLine.addLine(ROUND_NONE);
+        result = String.format("[ %s | %s | %s ]", ROUND_SUCCESS.getValue(), ROUND_FAIL.getValue(), ROUND_NONE.getValue());
         assertThat(bridgeLine.toString()).isEqualTo(result);
     }
 }

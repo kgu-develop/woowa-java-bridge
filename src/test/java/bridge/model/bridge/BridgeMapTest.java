@@ -24,31 +24,31 @@ public class BridgeMapTest {
         result = new StringBuilder()
                 .append(String.format("[ %s ]", ROUND_SUCCESS.getValue()))
                 .append("\n")
-                .append(String.format("[ %s ]", NONE.getValue()));
+                .append(String.format("[ %s ]", ROUND_NONE.getValue()));
         assertThat(bridgeMap.toString()).isEqualTo(result.toString());
 
         // Direction[D] -> Success
         bridgeMap.updateMap(DOWN, ROUND_SUCCESS);
         result = new StringBuilder()
-                .append(String.format("[ %s | %s ]", ROUND_SUCCESS.getValue(), NONE.getValue()))
+                .append(String.format("[ %s | %s ]", ROUND_SUCCESS.getValue(), ROUND_NONE.getValue()))
                 .append("\n")
-                .append(String.format("[ %s | %s ]", NONE.getValue(), ROUND_SUCCESS.getValue()));
+                .append(String.format("[ %s | %s ]", ROUND_NONE.getValue(), ROUND_SUCCESS.getValue()));
         assertThat(bridgeMap.toString()).isEqualTo(result.toString());
 
         // Direction[D] -> Success
         bridgeMap.updateMap(DOWN, ROUND_SUCCESS);
         result = new StringBuilder()
-                .append(String.format("[ %s | %s | %s ]", ROUND_SUCCESS.getValue(), NONE.getValue(), NONE.getValue()))
+                .append(String.format("[ %s | %s | %s ]", ROUND_SUCCESS.getValue(), ROUND_NONE.getValue(), ROUND_NONE.getValue()))
                 .append("\n")
-                .append(String.format("[ %s | %s | %s ]", NONE.getValue(), ROUND_SUCCESS.getValue(), ROUND_SUCCESS.getValue()));
+                .append(String.format("[ %s | %s | %s ]", ROUND_NONE.getValue(), ROUND_SUCCESS.getValue(), ROUND_SUCCESS.getValue()));
         assertThat(bridgeMap.toString()).isEqualTo(result.toString());
 
         // Direction[U] -> Fail
         bridgeMap.updateMap(UP, ROUND_FAIL);
         result = new StringBuilder()
-                .append(String.format("[ %s | %s | %s | %s ]", ROUND_SUCCESS.getValue(), NONE.getValue(), NONE.getValue(), ROUND_FAIL.getValue()))
+                .append(String.format("[ %s | %s | %s | %s ]", ROUND_SUCCESS.getValue(), ROUND_NONE.getValue(), ROUND_NONE.getValue(), ROUND_FAIL.getValue()))
                 .append("\n")
-                .append(String.format("[ %s | %s | %s | %s ]", NONE.getValue(), ROUND_SUCCESS.getValue(), ROUND_SUCCESS.getValue(), NONE.getValue()));
+                .append(String.format("[ %s | %s | %s | %s ]", ROUND_NONE.getValue(), ROUND_SUCCESS.getValue(), ROUND_SUCCESS.getValue(), ROUND_NONE.getValue()));
         assertThat(bridgeMap.toString()).isEqualTo(result.toString());
     }
 }

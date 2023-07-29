@@ -3,7 +3,7 @@ package bridge.model.game;
 public enum GameRoundStatus {
     ROUND_SUCCESS("O", true),
     ROUND_FAIL("X", false),
-    NONE(" ", false),
+    ROUND_NONE(" ", false),
     ;
 
     private final String value;
@@ -19,9 +19,5 @@ public enum GameRoundStatus {
 
     public String getValue() {
         return value;
-    }
-
-    public boolean isSuccess() {
-        return success;
     }
 }

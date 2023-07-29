@@ -4,7 +4,7 @@ import bridge.model.game.GameRoundStatus;
 
 import static bridge.model.bridge.BridgeDirection.DOWN;
 import static bridge.model.bridge.BridgeDirection.UP;
-import static bridge.model.game.GameRoundStatus.NONE;
+import static bridge.model.game.GameRoundStatus.ROUND_NONE;
 
 public class BridgeMap {
     private final BridgeLine upLine;
@@ -28,11 +28,11 @@ public class BridgeMap {
     ) {
         if (direction == UP) {
             upLine.addLine(status);
-            downLine.addLine(NONE);
+            downLine.addLine(ROUND_NONE);
         }
 
         if (direction == DOWN) {
-            upLine.addLine(NONE);
+            upLine.addLine(ROUND_NONE);
             downLine.addLine(status);
         }
     }
