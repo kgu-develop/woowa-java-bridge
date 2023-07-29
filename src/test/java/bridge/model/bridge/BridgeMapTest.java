@@ -20,35 +20,35 @@ public class BridgeMapTest {
         assertThat(bridgeMap.toString()).isEqualTo(result.toString());
 
         // Direction[U] -> Success
-        bridgeMap.updateMap(UP, SUCCESS);
+        bridgeMap.updateMap(UP, ROUND_SUCCESS);
         result = new StringBuilder()
-                .append(String.format("[ %s ]", SUCCESS.getValue()))
+                .append(String.format("[ %s ]", ROUND_SUCCESS.getValue()))
                 .append("\n")
                 .append(String.format("[ %s ]", NONE.getValue()));
         assertThat(bridgeMap.toString()).isEqualTo(result.toString());
 
         // Direction[D] -> Success
-        bridgeMap.updateMap(DOWN, SUCCESS);
+        bridgeMap.updateMap(DOWN, ROUND_SUCCESS);
         result = new StringBuilder()
-                .append(String.format("[ %s | %s ]", SUCCESS.getValue(), NONE.getValue()))
+                .append(String.format("[ %s | %s ]", ROUND_SUCCESS.getValue(), NONE.getValue()))
                 .append("\n")
-                .append(String.format("[ %s | %s ]", NONE.getValue(), SUCCESS.getValue()));
+                .append(String.format("[ %s | %s ]", NONE.getValue(), ROUND_SUCCESS.getValue()));
         assertThat(bridgeMap.toString()).isEqualTo(result.toString());
 
         // Direction[D] -> Success
-        bridgeMap.updateMap(DOWN, SUCCESS);
+        bridgeMap.updateMap(DOWN, ROUND_SUCCESS);
         result = new StringBuilder()
-                .append(String.format("[ %s | %s | %s ]", SUCCESS.getValue(), NONE.getValue(), NONE.getValue()))
+                .append(String.format("[ %s | %s | %s ]", ROUND_SUCCESS.getValue(), NONE.getValue(), NONE.getValue()))
                 .append("\n")
-                .append(String.format("[ %s | %s | %s ]", NONE.getValue(), SUCCESS.getValue(), SUCCESS.getValue()));
+                .append(String.format("[ %s | %s | %s ]", NONE.getValue(), ROUND_SUCCESS.getValue(), ROUND_SUCCESS.getValue()));
         assertThat(bridgeMap.toString()).isEqualTo(result.toString());
 
         // Direction[U] -> Fail
-        bridgeMap.updateMap(UP, FAIL);
+        bridgeMap.updateMap(UP, ROUND_FAIL);
         result = new StringBuilder()
-                .append(String.format("[ %s | %s | %s | %s ]", SUCCESS.getValue(), NONE.getValue(), NONE.getValue(), FAIL.getValue()))
+                .append(String.format("[ %s | %s | %s | %s ]", ROUND_SUCCESS.getValue(), NONE.getValue(), NONE.getValue(), ROUND_FAIL.getValue()))
                 .append("\n")
-                .append(String.format("[ %s | %s | %s | %s ]", NONE.getValue(), SUCCESS.getValue(), SUCCESS.getValue(), NONE.getValue()));
+                .append(String.format("[ %s | %s | %s | %s ]", NONE.getValue(), ROUND_SUCCESS.getValue(), ROUND_SUCCESS.getValue(), NONE.getValue()));
         assertThat(bridgeMap.toString()).isEqualTo(result.toString());
     }
 }

@@ -1,8 +1,8 @@
 package bridge.model.game;
 
 public enum GameRoundStatus {
-    SUCCESS("O", true),
-    FAIL("X", false),
+    ROUND_SUCCESS("O", true),
+    ROUND_FAIL("X", false),
     NONE(" ", false),
     ;
 

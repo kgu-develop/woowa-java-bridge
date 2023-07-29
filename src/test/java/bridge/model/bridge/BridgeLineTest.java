@@ -15,18 +15,18 @@ public class BridgeLineTest {
         assertThat(bridgeLine.toString()).isEqualTo(result);
 
         // add success
-        bridgeLine.addLine(SUCCESS);
-        result = String.format("[ %s ]", SUCCESS.getValue());
+        bridgeLine.addLine(ROUND_SUCCESS);
+        result = String.format("[ %s ]", ROUND_SUCCESS.getValue());
         assertThat(bridgeLine.toString()).isEqualTo(result);
 
         // add fail
-        bridgeLine.addLine(FAIL);
-        result = String.format("[ %s | %s ]", SUCCESS.getValue(), FAIL.getValue());
+        bridgeLine.addLine(ROUND_FAIL);
+        result = String.format("[ %s | %s ]", ROUND_SUCCESS.getValue(), ROUND_FAIL.getValue());
         assertThat(bridgeLine.toString()).isEqualTo(result);
 
         // add none
         bridgeLine.addLine(NONE);
-        result = String.format("[ %s | %s | %s ]", SUCCESS.getValue(), FAIL.getValue(), NONE.getValue());
+        result = String.format("[ %s | %s | %s ]", ROUND_SUCCESS.getValue(), ROUND_FAIL.getValue(), NONE.getValue());
         assertThat(bridgeLine.toString()).isEqualTo(result);
     }
 }
