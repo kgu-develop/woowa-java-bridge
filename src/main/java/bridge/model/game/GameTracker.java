@@ -40,7 +40,10 @@ public class GameTracker {
     }
 
     public String displayResultStatus() {
-        return gameStatus.isGameClear() ? CLEAR.getValue() : FAIL.getValue();
+        if (gameStatus.isGameClear()) {
+            return CLEAR.getValue();
+        }
+        return FAIL.getValue();
     }
 
     public BridgeMap getBridgeMap() {

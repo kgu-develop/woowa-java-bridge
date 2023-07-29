@@ -32,7 +32,10 @@ public class BridgeGame {
             final BridgeDirection bridgeDirection,
             final BridgeDirection playerDirection
     ) {
-        return bridgeDirection == playerDirection ? ROUND_SUCCESS : ROUND_FAIL;
+        if (bridgeDirection == playerDirection) {
+            return ROUND_SUCCESS;
+        }
+        return ROUND_FAIL;
     }
 
     /**
