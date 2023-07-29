@@ -15,8 +15,7 @@ public class BridgeService {
     
     public void move(List<Boolean> resultHolder, boolean eachResult, List<String> bridge) {
         resultHolder.add(eachResult);
-    
-        // eachResult 주면서 outpur view 호출
+        OutputView.printMap(bridge, resultHolder);
     }
     
     public boolean checkMove(String bridgeSquare, String userSquare) {
