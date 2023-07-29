@@ -13,7 +13,7 @@ public class OutputView {
     private static final String NUMBER_OF_ATTEMPTS = "총 시도한 횟수: %d";
     private static final String ERROR_MESSAGE_FORMAT = "[ERROR] %s";
 
-    public void printStartGame() {
+    public static void printStartGame() {
         System.out.println(START_GAME);
     }
 
@@ -22,7 +22,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(final BridgeMap bridgeMap) {
+    public static void printMap(final BridgeMap bridgeMap) {
         System.out.println(bridgeMap);
     }
 
@@ -31,7 +31,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(final GameTracker gameTracker) {
+    public static void printResult(final GameTracker gameTracker) {
         System.out.println(FINAL_RESULT);
         System.out.println(gameTracker.getBridgeMap());
         System.out.println(String.format(GAME_IS_SUCCESSFUL, gameTracker.displayResultStatus()));
