@@ -36,9 +36,14 @@
   - 사용자가 건너갈 Bridge의 정답 기준
   - `BridgeMaker -> List<String>`을 기준으로 Bridge 생성
 
+### `bridge/BridgeLine`
+
+- 위 아래 각각의 Bridge를 나타내는 컴포넌트
+
 ### `bridge/BridgeMap`
 
 - 사용자가 건너는 전체 다리 정보와 관련된 Map 컴포넌트
+  - `BridgeLine upLine, BridgeLine downLine`을 포함
 
 ### `game/GameStatus`
 
@@ -46,6 +51,13 @@
   - `START` -> 게임 시작
   - `RETRY` -> 게임 재시작
   - `QUIT` -> 게임 종료
+
+### `game/GameRoundStatus`
+
+- 각 라운드별 다리 건넌 상태를 표현하기 위한 컴포넌트
+  - `SUCCESS` -> 건너기 성공
+  - `FAIL` -> 건너기 실패
+  - `NONE` -> 건너지 않음
 
 ### `game/GameResultStatus`
 
