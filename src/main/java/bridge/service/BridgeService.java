@@ -10,8 +10,15 @@ import java.util.List;
 
 public class BridgeService {
     public List<String> createBridge(BridgeMaker bridgeMaker) {
-        OutputView.printGameStartMessage();
-        return bridgeMaker.makeBridge(InputView.readBridgeSize());
+        while (true) {
+            try {
+                OutputView.printGameStartMessage();
+                
+                return bridgeMaker.makeBridge(InputView.readBridgeSize());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
     
     public boolean checkMove(String bridgeSquare, String userSquare) {
@@ -24,7 +31,13 @@ public class BridgeService {
     }
     
     public RestartStatus retry() {
-        return RestartStatus.getRestartStatusBy(InputView.readGameCommand());
+        while (true) {
+            try {
+                return RestartStatus.getRestartStatusBy(InputView.readGameCommand());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
     
     public void end(int count, FinalResult finalResult) {

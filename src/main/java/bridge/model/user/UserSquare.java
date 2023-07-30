@@ -1,25 +1,35 @@
 package bridge.model.user;
 
+import bridge.utils.BridgeConstant;
 import bridge.view.InputView;
+
+import static bridge.utils.ExceptionMessage.Input_Exception.INVALID_INPUT_SQUARE_EXCEPTION;
 
 public class UserSquare {
     private String square;
     
     public UserSquare() {
-        String moving = InputView.readMoving();
-        validateCharacter(moving);
-        
-        this.square = moving;
+        while (true) {
+            try {
+                String moving = InputView.readMoving();
+                validateCharacter(moving);
+                this.square = moving;
+                
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
     
     private static void validateCharacter(String moving) {
         if (isInvalidCharacter(moving)) {
-            throw new IllegalArgumentException("윗 칸은 [U], 아래 칸은 [D]를 눌러주세요");
+            throw new IllegalArgumentException(INVALID_INPUT_SQUARE_EXCEPTION.getMessage());
         }
     }
     
     private static boolean isInvalidCharacter(String moving) {
-        return !moving.equals("U") && !moving.equals("D");
+        return !moving.equals(BridgeConstant.UP_SQUARE) && !moving.equals(BridgeConstant.DOWN_SQUARE);
     }
     
     public String getSquare() {
