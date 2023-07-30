@@ -49,7 +49,6 @@
 
 - 게임 상태와 관련된 Enum 컴포넌트
   - `IN_PROGRESS` -> 게임 진행
-  - `TERMINATE` -> 게임 종료
   - `GAME_CLEAR` -> 게임 성공
   - `GAME_FAIL` -> 게임 실패
 
@@ -58,7 +57,7 @@
 - 각 라운드별 다리 건넌 상태를 표현하기 위한 컴포넌트
   - `ROUND_SUCCESS` -> 건너기 성공
   - `ROUND_FAIL` -> 건너기 실패
-  - `NONE` -> 건너지 않음
+  - `ROUND_NONE` -> 건너지 않음
 
 ### `game/GameResultStatus`
 
@@ -72,10 +71,6 @@
   - 다리 전체 맵
   - 게임 현재 상태
   - 총 시도 횟수
-
-### `game/BridgeGame`
-
-- 다리 건너기 게임을 관리하는 컴포넌트
 
 <br>
 <hr>
@@ -108,8 +103,8 @@
 
 ## Controller
 
-### `GameController`
+### `BridgeGame`
 
-- 다리 건너기 게임 진행과 관련된 컨트롤러
+- 다리 건너기 게임을 관리하는 컴포넌트
 
 <br>
