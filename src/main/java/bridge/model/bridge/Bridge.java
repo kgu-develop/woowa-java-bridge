@@ -24,4 +24,8 @@ public class Bridge {
     public BridgeDirection getBridgeDirectionByIndex(final int index) {
         return bridge.get(index);
     }
+
+    public boolean isEndOfBridge(final int currentOrder) {
+        return currentOrder + 1 == bridge.size();
+    }
 }

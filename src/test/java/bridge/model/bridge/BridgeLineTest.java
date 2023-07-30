@@ -9,6 +9,7 @@ import static bridge.common.BridgeFixture.INIT_BRIDGE_LINE;
 import static bridge.common.BridgeFixture.createBridgeLine;
 import static bridge.model.game.GameRoundStatus.*;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class BridgeLineTest {
     @Test
@@ -19,17 +20,26 @@ public class BridgeLineTest {
 
         // add success
         bridgeLine.addLine(ROUND_SUCCESS);
-        assertThat(bridgeLine.toString())
-                .isEqualTo(createBridgeLine("[ %s ]", List.of(ROUND_SUCCESS)));
+        assertAll(
+                () -> assertThat(bridgeLine.getLength()).isEqualTo(1),
+                () -> assertThat(bridgeLine.toString())
+                        .isEqualTo(createBridgeLine("[ %s ]", List.of(ROUND_SUCCESS)))
+        );
 
         // add fail
         bridgeLine.addLine(ROUND_FAIL);
-        assertThat(bridgeLine.toString())
-                .isEqualTo(createBridgeLine("[ %s | %s ]", List.of(ROUND_SUCCESS, ROUND_FAIL)));
+        assertAll(
+                () -> assertThat(bridgeLine.getLength()).isEqualTo(2),
+                () -> assertThat(bridgeLine.toString())
+                        .isEqualTo(createBridgeLine("[ %s | %s ]", List.of(ROUND_SUCCESS, ROUND_FAIL)))
+        );
 
         // add none
         bridgeLine.addLine(ROUND_NONE);
-        assertThat(bridgeLine.toString())
-                .isEqualTo(createBridgeLine("[ %s | %s | %s ]", List.of(ROUND_SUCCESS, ROUND_FAIL, ROUND_NONE)));
+        assertAll(
+                () -> assertThat(bridgeLine.getLength()).isEqualTo(3),
+                () -> assertThat(bridgeLine.toString())
+                        .isEqualTo(createBridgeLine("[ %s | %s | %s ]", List.of(ROUND_SUCCESS, ROUND_FAIL, ROUND_NONE)))
+        );
     }
 }

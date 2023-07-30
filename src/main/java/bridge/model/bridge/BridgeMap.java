@@ -37,6 +37,10 @@ public class BridgeMap {
         }
     }
 
+    public int getLineLength() {
+        return upLine.getLength();
+    }
+
     @Override
     public String toString() {
         return upLine.toString() + "\n" + downLine.toString();

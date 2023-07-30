@@ -20,4 +20,12 @@ public enum GameRoundStatus {
     public String getValue() {
         return value;
     }
+
+    public boolean isRoundSuccess() {
+        return this == ROUND_SUCCESS;
+    }
+
+    public boolean isRoundFail() {
+        return this == ROUND_FAIL;
+    }
 }

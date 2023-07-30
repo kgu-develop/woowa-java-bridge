@@ -26,7 +26,11 @@ public class BridgeTest {
                 () -> assertThat(bridge.getBridgeDirectionByIndex(0)).isEqualTo(UP),
                 () -> assertThat(bridge.getBridgeDirectionByIndex(1)).isEqualTo(DOWN),
                 () -> assertThat(bridge.getBridgeDirectionByIndex(2)).isEqualTo(DOWN),
-                () -> assertThat(bridge.getBridgeDirectionByIndex(3)).isEqualTo(UP)
+                () -> assertThat(bridge.getBridgeDirectionByIndex(3)).isEqualTo(UP),
+                () -> assertThat(bridge.isEndOfBridge(0)).isFalse(),
+                () -> assertThat(bridge.isEndOfBridge(1)).isFalse(),
+                () -> assertThat(bridge.isEndOfBridge(2)).isFalse(),
+                () -> assertThat(bridge.isEndOfBridge(3)).isTrue()
         );
     }
 }

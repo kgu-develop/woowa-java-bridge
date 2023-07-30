@@ -95,33 +95,24 @@ public class GameTrackerTest {
     }
 
     @Test
-    @DisplayName("게임을 종료시킨다")
-    void terminateGame() {
-        final GameTracker gameTracker = new GameTracker();
-        assertAll(
-                () -> assertThat(gameTracker.getBridgeMap().toString()).isEqualTo(INIT_BRIDGE_MAP),
-                () -> assertThat(gameTracker.getGameStatus()).isEqualTo(IN_PROGRESS),
-                () -> assertThat(gameTracker.getAttemptCount()).isEqualTo(1)
-        );
-
-        gameTracker.terminateGame();
-        assertAll(
-                () -> assertThat(gameTracker.getGameStatus()).isEqualTo(TERMINATE),
-                () -> assertThat(gameTracker.getAttemptCount()).isEqualTo(1)
-        );
-    }
-
-    @Test
     @DisplayName("게임 성공/실패 결과를 응답받는다")
     void displayResultStatus() {
         final GameTracker gameTracker = new GameTracker();
 
         /* 게임 클리어 */
         gameTracker.updateGameStatus(GAME_CLEAR);
-        assertThat(gameTracker.displayResultStatus()).isEqualTo(CLEAR.getValue());
+        assertAll(
+                () -> assertThat(gameTracker.isGameClear()).isTrue(),
+                () -> assertThat(gameTracker.isGameFail()).isFalse(),
+                () -> assertThat(gameTracker.displayResultStatus()).isEqualTo(CLEAR.getValue())
+        );
 
         /* 게임 실패 */
         gameTracker.updateGameStatus(GAME_FAIL);
-        assertThat(gameTracker.displayResultStatus()).isEqualTo(FAIL.getValue());
+        assertAll(
+                () -> assertThat(gameTracker.isGameClear()).isFalse(),
+                () -> assertThat(gameTracker.isGameFail()).isTrue(),
+                () -> assertThat(gameTracker.displayResultStatus()).isEqualTo(FAIL.getValue())
+        );
     }
 }

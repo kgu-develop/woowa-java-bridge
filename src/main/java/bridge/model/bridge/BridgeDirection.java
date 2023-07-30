@@ -35,10 +35,6 @@ public enum BridgeDirection {
                 .orElseThrow(() -> new IllegalArgumentException(INVALID_DIRECTION_COMMAND.message));
     }
 
-    public int getNumber() {
-        return number;
-    }
-
     public String getCommand() {
         return command;
     }

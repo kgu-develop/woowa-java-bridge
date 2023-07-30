@@ -25,4 +25,8 @@ public enum GameProcessDecisionCommand {
     public String getValue() {
         return value;
     }
+
+    public boolean isRetryDecision() {
+        return this == RETRY;
+    }
 }

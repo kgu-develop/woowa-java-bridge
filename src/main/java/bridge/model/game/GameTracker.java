@@ -6,7 +6,6 @@ import bridge.model.bridge.BridgeMap;
 import static bridge.model.game.GameResultStatus.CLEAR;
 import static bridge.model.game.GameResultStatus.FAIL;
 import static bridge.model.game.GameStatus.IN_PROGRESS;
-import static bridge.model.game.GameStatus.TERMINATE;
 
 public class GameTracker {
     private BridgeMap bridgeMap;
@@ -28,11 +27,8 @@ public class GameTracker {
 
     public void retryGame() {
         bridgeMap = BridgeMap.init();
+        gameStatus = IN_PROGRESS;
         attemptCount++;
-    }
-
-    public void terminateGame() {
-        gameStatus = TERMINATE;
     }
 
     public void updateGameStatus(final GameStatus gameStatus) {
@@ -40,10 +36,26 @@ public class GameTracker {
     }
 
     public String displayResultStatus() {
-        if (gameStatus.isGameClear()) {
+        if (isGameClear()) {
             return CLEAR.getValue();
         }
         return FAIL.getValue();
+    }
+
+    public int getCurrentOrder() {
+        return bridgeMap.getLineLength();
+    }
+
+    public boolean isGameInProgress() {
+        return gameStatus.isGameInProgress();
+    }
+
+    public boolean isGameClear() {
+        return gameStatus.isGameClear();
+    }
+
+    public boolean isGameFail() {
+        return gameStatus.isGameFail();
     }
 
     public BridgeMap getBridgeMap() {

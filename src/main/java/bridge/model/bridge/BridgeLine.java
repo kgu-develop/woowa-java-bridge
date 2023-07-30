@@ -21,6 +21,10 @@ public class BridgeLine {
         line.add(status.getValue());
     }
 
+    public int getLength() {
+        return line.size();
+    }
+
     @Override
     public String toString() {
         final StringJoiner joiner = new StringJoiner(" | ", "[ ", " ]");
