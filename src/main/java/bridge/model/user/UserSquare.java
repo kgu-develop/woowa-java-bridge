@@ -11,7 +11,7 @@ public class UserSquare {
     public UserSquare() {
         while (true) {
             try {
-                String moving = InputView.readMoving();
+                final String moving = InputView.readMoving();
                 validateCharacter(moving);
                 this.square = moving;
                 
@@ -22,13 +22,13 @@ public class UserSquare {
         }
     }
     
-    private static void validateCharacter(String moving) {
+    private static void validateCharacter(final String moving) {
         if (isInvalidCharacter(moving)) {
             throw new IllegalArgumentException(INVALID_INPUT_SQUARE_EXCEPTION.getMessage());
         }
     }
     
-    private static boolean isInvalidCharacter(String moving) {
+    private static boolean isInvalidCharacter(final String moving) {
         return !moving.equals(BridgeConstant.UP_SQUARE) && !moving.equals(BridgeConstant.DOWN_SQUARE);
     }
     

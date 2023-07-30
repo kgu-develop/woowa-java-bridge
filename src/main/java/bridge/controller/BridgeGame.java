@@ -34,7 +34,7 @@ public class BridgeGame {
     }
     
     public void run() {
-        List<String> bridge = createBridge();
+        final List<String> bridge = createBridge();
         playGame(bridge);
         endGame();
     }
@@ -43,11 +43,11 @@ public class BridgeGame {
         return bridgeService.createBridge(bridgeMaker);
     }
     
-    private void playGame(List<String> bridge) {
+    private void playGame(final List<String> bridge) {
         do {
             List<Boolean> moveResult = createResultHolder();
             count += 1;
-            for (String bridgeSquare : bridge) {
+            for (final String bridgeSquare : bridge) {
                 move(bridgeSquare, moveResult, bridge);
             
                 if (isDifferent()) {
@@ -72,9 +72,9 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String bridgeSquare, List<Boolean> moveResult, List<String> bridge) {
-        UserSquare userSquare = new UserSquare();
-        boolean eachResult = bridgeService.checkMove(userSquare.getSquare(), bridgeSquare);
+    public void move(final String bridgeSquare, List<Boolean> moveResult, final List<String> bridge) {
+        final UserSquare userSquare = new UserSquare();
+        final boolean eachResult = bridgeService.checkMove(userSquare.getSquare(), bridgeSquare);
         
         compare = CompareResult.getCompareBy(eachResult);
         bridgeService.move(moveResult, eachResult, bridge);
@@ -97,7 +97,7 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry(boolean eachResult) {
+    public void retry(final boolean eachResult) {
         if (eachResult == false) {
             restartStatus = bridgeService.retry();
         }

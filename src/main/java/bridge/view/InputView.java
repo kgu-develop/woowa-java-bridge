@@ -31,8 +31,8 @@ public class InputView {
      */
     public static int readBridgeSize() {
         printInputLengthMessage();
-        
-        String length = Console.readLine();
+    
+        final String length = Console.readLine();
         
         validateHasWhiteSpace(length);
         validateIsNumeric(length);
@@ -46,7 +46,7 @@ public class InputView {
     public static String readMoving() {
         printInputDirectMessage();
     
-        String direct = Console.readLine();
+        final String direct = Console.readLine();
         validateHasWhiteSpace(direct);
         
         return direct;
@@ -57,24 +57,24 @@ public class InputView {
      */
     public static String readGameCommand() {
         printInputRestartStatusMessage();
-        
-        String command = Console.readLine();
+    
+        final String command = Console.readLine();
         validateHasWhiteSpace(command);
         
         return command;
     }
     
-    private static void validateHasWhiteSpace(String input) {
+    private static void validateHasWhiteSpace(final String input) {
         if (hasWhiteSpace(input)) {
             throw new IllegalArgumentException(HAS_WHITESPACE_EXCEPTION.getMessage());
         }
     }
     
-    private static boolean hasWhiteSpace(String input) {
+    private static boolean hasWhiteSpace(final String input) {
         return input.chars().anyMatch(Character::isWhitespace);
     }
     
-    private static void validateIsNumeric(String input) {
+    private static void validateIsNumeric(final String input) {
         try {
             Integer.valueOf(input);
         } catch (IllegalArgumentException e) {

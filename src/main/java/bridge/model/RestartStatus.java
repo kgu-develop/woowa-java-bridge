@@ -16,7 +16,7 @@ public enum RestartStatus {
         this.signal = signal;
     }
     
-    public static RestartStatus getRestartStatusBy(String signal) {
+    public static RestartStatus getRestartStatusBy(final String signal) {
         validateCharacter(signal);
         
         return Arrays.stream(values())
@@ -25,13 +25,13 @@ public enum RestartStatus {
                 .orElseGet(() -> null);
     }
     
-    private static void validateCharacter(String signal) {
+    private static void validateCharacter(final String signal) {
         if (isInvalidCharacter(signal)) {
             throw new IllegalArgumentException(INVALID_INPUT_RESTART_STATUS_EXCEPTION.getMessage());
         }
     }
     
-    private static boolean isInvalidCharacter(String signal) {
+    private static boolean isInvalidCharacter(final String signal) {
         return !signal.equals(RESTART_SIGN) && !signal.equals(QUIT_SIGN);
     }
 }

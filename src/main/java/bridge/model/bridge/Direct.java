@@ -12,7 +12,7 @@ public enum Direct {
         this.directNumber = directNumber;
     }
     
-    public static Direct getDirectBy(int directNumber) {
+    public static Direct getDirectBy(final int directNumber) {
         return Arrays.stream(values())
                 .filter(Direct -> Direct.directNumber == directNumber)
                 .findFirst()

@@ -37,7 +37,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printMap(List<String> bridge, List<Boolean> moveResult) {
+    public static void printMap(final List<String> bridge, final List<Boolean> moveResult) {
         StringBuilder upSquares = new StringBuilder(OPEN_BRACKETS);
         StringBuilder downSquares = new StringBuilder(OPEN_BRACKETS);
         
@@ -72,19 +72,19 @@ public class OutputView {
         System.out.println(finalSquares);
     }
     
-    private static boolean isDownDirectNotSame(List<String> bridge, List<Boolean> moveResult, int i) {
+    private static boolean isDownDirectNotSame(final List<String> bridge, final List<Boolean> moveResult, final int i) {
         return bridge.get(i).equals(DOWN_SQUARE) && moveResult.get(i) == false;
     }
     
-    private static boolean isUpDirectNotSame(List<String> bridge, List<Boolean> moveResult, int i) {
+    private static boolean isUpDirectNotSame(final List<String> bridge, final List<Boolean> moveResult, final int i) {
         return bridge.get(i).equals(UP_SQUARE) && moveResult.get(i) == false;
     }
     
-    private static boolean isDownDirectSame(List<String> bridge, List<Boolean> moveResult, int i) {
+    private static boolean isDownDirectSame(final List<String> bridge, final List<Boolean> moveResult, final int i) {
         return bridge.get(i).equals(DOWN_SQUARE) && moveResult.get(i) == true;
     }
     
-    private static boolean isUpDirectSame(List<String> bridge, List<Boolean> moveResult, int i) {
+    private static boolean isUpDirectSame(final List<String> bridge, final List<Boolean> moveResult, final int i) {
         return bridge.get(i).equals(UP_SQUARE) && moveResult.get(i) == true;
     }
     
@@ -93,7 +93,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult(int count, FinalResult finalResult) {
+    public static void printResult(final int count, final FinalResult finalResult) {
         StringBuilder finalMessage = new StringBuilder();
         String result = SUCCESS;
         

@@ -12,7 +12,7 @@ public enum CompareResult {
         this.isSame = isSame;
     }
     
-    public static CompareResult getCompareBy(boolean EachResult) {
+    public static CompareResult getCompareBy(final boolean EachResult) {
         return Arrays.stream(values())
                 .filter(Compare -> Compare.isSame == EachResult)
                 .findFirst()

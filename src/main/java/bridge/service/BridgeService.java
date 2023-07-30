@@ -9,7 +9,7 @@ import bridge.view.OutputView;
 import java.util.List;
 
 public class BridgeService {
-    public List<String> createBridge(BridgeMaker bridgeMaker) {
+    public List<String> createBridge(final BridgeMaker bridgeMaker) {
         while (true) {
             try {
                 OutputView.printGameStartMessage();
@@ -21,11 +21,11 @@ public class BridgeService {
         }
     }
     
-    public boolean checkMove(String bridgeSquare, String userSquare) {
+    public boolean checkMove(final String bridgeSquare, final String userSquare) {
         return userSquare.equals(bridgeSquare);
     }
     
-    public void move(List<Boolean> moveResult, boolean eachResult, List<String> bridge) {
+    public void move(List<Boolean> moveResult, final boolean eachResult, final List<String> bridge) {
         moveResult.add(eachResult);
         OutputView.printMap(bridge, moveResult);
     }
@@ -40,7 +40,7 @@ public class BridgeService {
         }
     }
     
-    public void end(int count, FinalResult finalResult) {
+    public void end(final int count, final FinalResult finalResult) {
         OutputView.printResult(count, finalResult);
     }
 }
