@@ -1,7 +1,5 @@
 package bridge.model;
 
-import bridge.view.InputView;
-
 import java.util.Arrays;
 
 public enum RestartStatus {

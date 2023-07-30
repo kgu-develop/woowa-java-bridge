@@ -4,10 +4,10 @@ import bridge.model.RestartStatus;
 import bridge.model.bridge.BridgeMaker;
 import bridge.model.bridge.BridgeRandomNumberGenerator;
 import bridge.model.result.CompareResult;
+import bridge.model.result.FinalResult;
 import bridge.model.result.MoveResult;
 import bridge.model.user.UserSquare;
 import bridge.service.BridgeService;
-import bridge.view.InputView;
 
 import java.util.List;
 
@@ -16,21 +16,27 @@ import java.util.List;
  */
 public class BridgeGame {
     private static BridgeService bridgeService;
+    
     private static BridgeMaker bridgeMaker;
     
-    private CompareResult compare;
+    private static int count;
     
-    private RestartStatus restartStatus;
+    private static CompareResult compare;
+    
+    private static RestartStatus restartStatus;
+    
+    private static FinalResult finalResult;
     
     public BridgeGame() {
-        this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        restartStatus = RestartStatus.RESTART;
+        bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridgeService = new BridgeService();
+        count = 0;
     }
     
     public void run() {
         List<String> bridge = createBridge();
         playGame(bridge);
+        endGame();
     }
     
     private List<String> createBridge() {
@@ -40,6 +46,7 @@ public class BridgeGame {
     private void playGame(List<String> bridge) {
         do {
             List<Boolean> moveResult = createResultHolder();
+            count += 1;
             for (String bridgeSquare : bridge) {
                 move(bridgeSquare, moveResult, bridge);
             
@@ -47,14 +54,17 @@ public class BridgeGame {
                     break;
                 }
             }
-        
+            gameOver();
         } while (!isQuit());
+    }
+    
+    private void endGame() {
+        bridgeService.end(count, finalResult);
     }
     
     private static List<Boolean> createResultHolder() {
         MoveResult.initResultHolder();
-        List<Boolean> moveResult = MoveResult.getMoveResult();
-        return moveResult;
+        return MoveResult.getMoveResult();
     }
     
     /**
@@ -69,6 +79,17 @@ public class BridgeGame {
         compare = CompareResult.getCompareBy(eachResult);
         bridgeService.move(moveResult, eachResult, bridge);
         retry(eachResult);
+    }
+    
+    private static void gameOver() {
+        if (isSuccess()) {
+            restartStatus = RestartStatus.QUIT;
+            finalResult = FinalResult.SUCCESS;
+        }
+    
+        if (isFail()) {
+            finalResult = FinalResult.FAIL;
+        }
     }
 
     /**
@@ -88,5 +109,13 @@ public class BridgeGame {
     
     private boolean isQuit() {
         return restartStatus == RestartStatus.QUIT;
+    }
+    
+    private static boolean isSuccess() {
+        return compare == CompareResult.SAME;
+    }
+    
+    private static boolean isFail() {
+        return compare == CompareResult.DIFF && restartStatus == RestartStatus.QUIT;
     }
 }

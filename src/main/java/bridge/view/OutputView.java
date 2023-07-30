@@ -1,13 +1,21 @@
 package bridge.view;
 
+import bridge.model.result.FinalResult;
+
 import java.util.List;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+    private static String finalSquares;
+    
     public static void printGameStartMessage() {
         System.out.println("다리 건너기 게임을 시작합니다.\n");
+    }
+    
+    private static void printResultMessage() {
+        System.out.println("최종 게임 결과");
     }
 
     /**
@@ -18,49 +26,51 @@ public class OutputView {
     public static void printMap(List<String> bridge, List<Boolean> moveResult) {
         StringBuilder upSquares = new StringBuilder("[");
         StringBuilder downSquares = new StringBuilder("[");
-    
+        
         for (int i = 0; i < moveResult.size(); i++) {
             if (i > 0) {
                 upSquares.append("|");
                 downSquares.append("|");
             }
             
-            if (isSameUpDirect(bridge, moveResult, i)) {
+            if (isUpDirectSame(bridge, moveResult, i)) {
                 upSquares.append(" O ");
                 downSquares.append("   ");
             }
-            if (isDifferentUpDirect(bridge, moveResult, i)) {
+            if (isUpDirectNotSame(bridge, moveResult, i)) {
                 upSquares.append("   ");
                 downSquares.append(" X ");
             }
-            if (isSameDownDirect(bridge, moveResult, i)) {
+            if (isDownDirectSame(bridge, moveResult, i)) {
                 upSquares.append("   ");
                 downSquares.append(" O ");
             }
-            if (isDifferentDownDirect(bridge, moveResult, i)) {
+            if (isDownDirectNotSame(bridge, moveResult, i)) {
                 upSquares.append(" X ");
                 downSquares.append("   ");
             }
         }
     
         upSquares.append("]\n");
-        downSquares.append("]");
-        System.out.println(upSquares.append(downSquares));
+        downSquares.append("]\n");
+        
+        finalSquares = upSquares.append(downSquares).toString();
+        System.out.println(finalSquares);
     }
     
-    private static boolean isDifferentDownDirect(List<String> bridge, List<Boolean> moveResult, int i) {
+    private static boolean isDownDirectNotSame(List<String> bridge, List<Boolean> moveResult, int i) {
         return bridge.get(i).equals("D") && moveResult.get(i) == false;
     }
     
-    private static boolean isDifferentUpDirect(List<String> bridge, List<Boolean> moveResult, int i) {
+    private static boolean isUpDirectNotSame(List<String> bridge, List<Boolean> moveResult, int i) {
         return bridge.get(i).equals("U") && moveResult.get(i) == false;
     }
     
-    private static boolean isSameDownDirect(List<String> bridge, List<Boolean> moveResult, int i) {
+    private static boolean isDownDirectSame(List<String> bridge, List<Boolean> moveResult, int i) {
         return bridge.get(i).equals("D") && moveResult.get(i) == true;
     }
     
-    private static boolean isSameUpDirect(List<String> bridge, List<Boolean> moveResult, int i) {
+    private static boolean isUpDirectSame(List<String> bridge, List<Boolean> moveResult, int i) {
         return bridge.get(i).equals("U") && moveResult.get(i) == true;
     }
     
@@ -69,6 +79,16 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public static void printResult(int count, FinalResult finalResult) {
+        String result = "성공";
+        printResultMessage();
+        System.out.println(finalSquares);
+    
+        if (finalResult == FinalResult.FAIL) {
+            result = "실패";
+        }
+    
+        System.out.println("게임 성공 여부: " + result);
+        System.out.println("총 시도한 횟수: " + count);
     }
 }

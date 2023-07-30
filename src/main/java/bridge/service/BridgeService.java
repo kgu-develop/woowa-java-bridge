@@ -2,6 +2,7 @@ package bridge.service;
 
 import bridge.model.RestartStatus;
 import bridge.model.bridge.BridgeMaker;
+import bridge.model.result.FinalResult;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -10,21 +11,23 @@ import java.util.List;
 public class BridgeService {
     public List<String> createBridge(BridgeMaker bridgeMaker) {
         OutputView.printGameStartMessage();
-        int bridgeSize = InputView.readBridgeSize();
-        return bridgeMaker.makeBridge(bridgeSize);
-    }
-    
-    public void move(List<Boolean> resultHolder, boolean eachResult, List<String> bridge) {
-        resultHolder.add(eachResult);
-        OutputView.printMap(bridge, resultHolder);
+        return bridgeMaker.makeBridge(InputView.readBridgeSize());
     }
     
     public boolean checkMove(String bridgeSquare, String userSquare) {
         return userSquare.equals(bridgeSquare);
     }
     
+    public void move(List<Boolean> moveResult, boolean eachResult, List<String> bridge) {
+        moveResult.add(eachResult);
+        OutputView.printMap(bridge, moveResult);
+    }
+    
     public RestartStatus retry() {
-        String signal = InputView.readGameCommand();
-        return RestartStatus.getRestartStatusBy(signal);
+        return RestartStatus.getRestartStatusBy(InputView.readGameCommand());
+    }
+    
+    public void end(int count, FinalResult finalResult) {
+        OutputView.printResult(count, finalResult);
     }
 }
