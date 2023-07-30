@@ -6,8 +6,8 @@ import static bridge.utils.ExceptionConstants.BridgeDirectionException.INVALID_D
 import static bridge.utils.ExceptionConstants.BridgeDirectionException.INVALID_DIRECTION_NUMBER;
 
 public enum BridgeDirection {
-    UP(0, "U"),
-    DOWN(1, "D"),
+    UP(1, "U"),
+    DOWN(0, "D"),
     ;
 
     private final int number;

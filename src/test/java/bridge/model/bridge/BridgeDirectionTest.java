@@ -33,8 +33,8 @@ public class BridgeDirectionTest {
         @DisplayName("정상적인 숫자로 BridgeDirection을 조회한다")
         void success() {
             assertAll(
-                    () -> assertThat(BridgeDirection.fromNumber(0)).isEqualTo(UP),
-                    () -> assertThat(BridgeDirection.fromNumber(1)).isEqualTo(DOWN)
+                    () -> assertThat(BridgeDirection.fromNumber(0)).isEqualTo(DOWN),
+                    () -> assertThat(BridgeDirection.fromNumber(1)).isEqualTo(UP)
             );
         }
     }
