@@ -24,6 +24,17 @@ public interface ExceptionConstants {
         }
     }
 
+    enum BridgeMakerException {
+        BRIDGE_SIZE_IS_OUT_OF_RANGE("다리 길이는 3..20 범위여야 합니다."),
+        ;
+
+        public final String message;
+
+        BridgeMakerException(final String message) {
+            this.message = message;
+        }
+    }
+
     enum InputException {
         INPUT_MUST_NOT_CONTAINS_SPACE("공백없이 입력해주세요."),
         INPUT_MUST_BE_NUMERIC("숫자를 입력해주세요."),

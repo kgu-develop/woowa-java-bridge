@@ -1,9 +1,9 @@
 package bridge.utils.validator;
 
-public class BridgeLengthValidator extends Validator {
-    private static final int MIN_VALUE = 3;
-    private static final int MAX_VALUE = 20;
+import static bridge.utils.BridgeConstants.MAX_VALUE;
+import static bridge.utils.BridgeConstants.MIN_VALUE;
 
+public class BridgeLengthValidator extends Validator {
     @Override
     public void validate(final String userInput) {
         validateInputHasSpace(userInput);
